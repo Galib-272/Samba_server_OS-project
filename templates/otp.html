@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Verify OTP</h1>
+            <p class="subtitle">We've sent a 6-digit code to <strong>{{ email }}</strong></p>
+            
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            
+            <form action="{{ url_for('verify_otp') }}" method="POST">
+                <div class="form-group">
+                    <label for="otp">Security Code</label>
+                    <input type="text" id="otp" name="otp" class="otp-input" placeholder="000000" maxlength="6" required autofocus>
+                </div>
+                <button type="submit">Verify & Access Samba</button>
+            </form>
+            
+            <a href="{{ url_for('login') }}" class="logout-link">Back to Login</a>
+        </div>
+    </div>
+</body>
+</html>

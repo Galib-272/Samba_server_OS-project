@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samba Control Center</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div style="text-align: center;">
+                <span class="status-badge status-online">● Samba Access Enabled</span>
+            </div>
+            <h1>Control Center</h1>
+            <p class="subtitle">Your file server access is currently active.</p>
+            
+            <div class="dashboard-info">
+                <div style="margin-bottom: 20px;">
+                    <p class="label">Authenticated Email</p>
+                    <p class="value">{{ email }}</p>
+                </div>
+                <div>
+                    <p class="label">Linux Username</p>
+                    <p class="value">{{ samba_user }}</p>
+                </div>
+            </div>
+
+            <div class="alert alert-info">
+                You can now connect to the Samba server using your credentials.
+            </div>
+            
+            <a href="{{ url_for('logout') }}" class="logout-link">Disable Access & Logout</a>
+        </div>
+    </div>
+</body>
+</html>
